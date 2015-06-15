@@ -1,0 +1,9 @@
+<li class="task <%= task.status %>" id="task_<%= task.id %>">
+  <% if task.active? %>
+    <%= link_to 'DONE', task_path(task), remote: true, method: 'PATCH', data: {params: {task: {status: 'done'}}.to_param}  %>
+  <% else %>
+    <%= link_to 'UNDONE', task_path(task), remote: true, method: 'PATCH', data: {params: {task: {status: 'active'}}.to_param}  %>
+  <% end %>
+  <%= task.text %>
+  <%= link_to 'X', task_path(task), remote: true, method: 'DELETE'  %>
+</li>

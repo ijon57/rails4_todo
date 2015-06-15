@@ -1,0 +1,5 @@
+<% if @task.valid? %>
+  $('.tasks').append('<%= j render "task", task: @task %>');
+<% else %>
+
+<% end %>

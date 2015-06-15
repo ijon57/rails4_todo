@@ -1,0 +1,24 @@
+
+<% if current_user %>
+  <h1>Tasks for user: 
+    <a href="#" id="edit_user"><%= current_user.name %></a>
+    <div id='form_user'>
+      <%= form_for current_user, remote: true do |f| %>
+        <%= f.text_field :name, size: 10 %>
+        <%= f.submit 'OK' %>
+      <% end %>
+    </div>
+  </h1>
+  <ul class="tasks">
+    <% @tasks.each do |task| %>
+      <%= render 'task', task: task %>
+    <% end %>
+  </ul>
+  <%= form_for current_user.tasks.build, remote: true do |f| %>
+    <%= f.text_field :text %>
+    <%= f.submit '+' %>
+  <% end %>
+<% else %>
+
+  No user. Please <%= link_to "pick one", new_user_path %>!
+<% end %>
